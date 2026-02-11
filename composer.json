@@ -1,0 +1,24 @@
+{
+    "name": "aeyoll/ps_translation",
+    "description": "Translation module for PrestaShop",
+    "type": "prestashop-module",
+    "version": "1.0.0",
+    "license": "AFL-3.0",
+    "authors": [
+        {
+            "name": "Jean-Philippe Bidegain"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrestaShop\\Module\\Translation\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    }
+}

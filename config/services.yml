@@ -1,0 +1,34 @@
+services:
+    _defaults:
+        public: true
+        autowire: false
+
+    PrestaShop\Module\Translation\Service\ThemeTranslationExporter:
+        class: PrestaShop\Module\Translation\Service\ThemeTranslationExporter
+        arguments:
+            - '@prestashop.translation.export.translation_catalogue'
+            - '@prestashop.core.admin.lang.repository'
+            - '@filesystem'
+            - '%themes_dir%'
+
+    PrestaShop\Module\Translation\Service\ThemeTranslationImporter:
+        class: PrestaShop\Module\Translation\Service\ThemeTranslationImporter
+        arguments:
+            - '@prestashop.service.translation'
+            - '@prestashop.core.admin.lang.repository'
+            - '@filesystem'
+            - '%themes_dir%'
+
+    prestashop.module.translation.command.export_theme_translations:
+        class: PrestaShop\Module\Translation\Command\ExportThemeTranslationsCommand
+        arguments:
+            - '@PrestaShop\Module\Translation\Service\ThemeTranslationExporter'
+        tags:
+            - { name: 'console.command' }
+
+    prestashop.module.translation.command.import_theme_translations:
+        class: PrestaShop\Module\Translation\Command\ImportThemeTranslationsCommand
+        arguments:
+            - '@PrestaShop\Module\Translation\Service\ThemeTranslationImporter'
+        tags:
+            - { name: 'console.command' }
